@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  apache:
+    image: php:8.0-apache
+    container_name: apache-php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - webnet
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: my_database
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - webnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    networks:
+      - webnet
+
+volumes:
+  mysql_data:
+
+networks:
+  webnet:
+    driver: bridge
