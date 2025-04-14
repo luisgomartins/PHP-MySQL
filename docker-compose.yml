@@ -1,51 +1,47 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  apache:
-    image: php:8.0-apache
-    container_name: apache-php
+  # Serviço para o Apache + PHP
+  web:
+    image: php:8.1-apache
+    container_name: php-apache
     ports:
-      - "8080:80"
+      - "8080:80" # Acessar via localhost:8080
     volumes:
-      - ./projeto-ToDo:/var/www/html/
+      - ./projeto-ToDo:/var/www/html # Substitua "src" pelo diretório onde você está desenvolvendo o código PHP
     networks:
-      - webnet
-    depends_on:
-      - db
-    command: >
-      bash -c "
-        docker-php-ext-install pdo pdo_mysql &&
-        apache2-foreground
-      "
+      - xampp-network
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
+  # Serviço para o MySQL
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: my_database
-    ports:
-      - "3306:3306"
+      MYSQL_DATABASE: example_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
-      - webnet
+      - xampp-network
 
+  # Serviço para o phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "8081:80"
+      - "8081:80" # Acessar phpMyAdmin via localhost:8081
     networks:
-      - webnet
+      - xampp-network
 
 volumes:
-  mysql_data:
+  db_data:
 
 networks:
-  webnet:
+  xampp-network:
     driver: bridge

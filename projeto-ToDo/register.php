@@ -1,51 +1,3 @@
-<?php
-$username = $email = $password = "";
-$errorUsername = $errorEmail = $errorPassword = "";
-$successMessage = "";
-
-If ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["inputusername"])) {
-        $errorUsername = "Username is required";
-    } else {
-        $username = $_POST["inputusername"];
-    }
-
-    if (empty($_POST["inputemail"])) {
-        $errorEmail = "Email is required";
-    } else {
-        $email = $_POST["inputemail"];
-    }
-
-    if (empty($_POST["inputpassword"])) {
-        $errorPassword = "Password is required";
-    } else {
-        $password = $_POST["inputpassword"];
-    }
-
-    if (empty($errorUsername) && empty($errorEmail) && empty($errorPassword)) {
-        // Aqui você pode adicionar o código para salvar os dados no banco de dados
-        $successMessage = "Registration successful!";
-        require 'includes/db.php';
-
-        $hashPassword = md5($password);
-        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$username', '$email', '$hashPassword')";
-        if ($conn->query($sql) === TRUE) {
-            $successMessage = "Registration successful!";
-        } else {
-            $errorMessage = "Error: " . $sql . "<br>" . $conn->error;
-        }
-        $conn->close();
-    }
-}
-
-
-?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,11 +45,11 @@ If ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="form-floating m-auto p-1">
                     <input type="text" class="form-control" id="inputusername" name="inputusername" placeholder="Username" required>
-                    <label for="username">Username</label>
+                    <label for="inputusername">Username</label>
                 </div>
                 <div class="form-floating m-auto p-1">
-                    <input type="email" class="form-control" id="inputemail" name="inputemail" placeholder="email" required>
-                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="inputemail" name="inputemail" placeholder="Email" required>
+                    <label for="inputemail">Email</label>
                 </div>
                 <div class="form-floating m-auto p-1 position-relative">
                     <input type="password" class="form-control pe-5" id="inputpassword" name="inputpassword" placeholder="Password" required>
@@ -107,6 +59,8 @@ If ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="inputpassword">Password</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+
 
         </div>
 
