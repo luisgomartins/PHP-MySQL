@@ -1,14 +1,13 @@
 version: '3.8'
 
 services:
-  # Serviço para o Apache + PHP
   web:
-    image: php:8.1-apache
+    build: .
     container_name: php-apache
     ports:
-      - "8080:80" # Acessar via localhost:8080
+      - "8080:80"
     volumes:
-      - ./projeto-ToDo:/var/www/html # Substitua "src" pelo diretório onde você está desenvolvendo o código PHP
+      - ./projeto-ToDo:/var/www/html
     networks:
       - xampp-network
 
@@ -18,7 +17,6 @@ services:
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: example_db
       MYSQL_USER: user
       MYSQL_PASSWORD: userpassword
     volumes:
