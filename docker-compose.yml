@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./html:/var/www/html
+      - ./projeto-ToDo:/var/www/html/
     networks:
       - webnet
 

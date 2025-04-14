@@ -1,18 +1,18 @@
 # Minhas anotações
 
 # PHP-MySQL
-Repositório para estudos da faculdade
+Repositório compartilhado para projeto de PHP-MySQL - Programação de Computadores II
 # Bash para rodar a docker
 docker-compose up -d
+
 # Estrutura do Sistema
+/projeto-ToDo
+|-index.php (Tela Inicial)
+|-register.php (cadastro)
+|-login.php (login)
+|-styles.css
 
-To Do 
-/ (público)
-|- index.php (Tela Inicial)
-|- register.php (cadastro)
-|- login.php (login)
-
-/user/ (área privada)
+/projeto-ToDo/user/
 |- dashboard.php (painel de tarefas)
 |- add_task.php (adicionar tarefa)
 |- edit_task.php (editar tarefa)
@@ -20,9 +20,9 @@ To Do
 |- report.php (relatório/gráfico)
 |- logout.php
 
-/includes/
+/projeto-ToDo/includes/
 |- db.php (conexão com MySQL)
 |- auth.php (verificação de login)
 
-/uploads/
+/projeto-ToDo/uploads/
 |- (imagens anexadas)
