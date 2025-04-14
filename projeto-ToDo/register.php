@@ -1,3 +1,51 @@
+<?php
+$username = $email = $password = "";
+$errorUsername = $errorEmail = $errorPassword = "";
+$successMessage = "";
+
+If ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["inputusername"])) {
+        $errorUsername = "Username is required";
+    } else {
+        $username = $_POST["inputusername"];
+    }
+
+    if (empty($_POST["inputemail"])) {
+        $errorEmail = "Email is required";
+    } else {
+        $email = $_POST["inputemail"];
+    }
+
+    if (empty($_POST["inputpassword"])) {
+        $errorPassword = "Password is required";
+    } else {
+        $password = $_POST["inputpassword"];
+    }
+
+    if (empty($errorUsername) && empty($errorEmail) && empty($errorPassword)) {
+        // Aqui você pode adicionar o código para salvar os dados no banco de dados
+        $successMessage = "Registration successful!";
+        require 'includes/db.php';
+
+        $hashPassword = md5($password);
+        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$username', '$email', '$hashPassword')";
+        if ($conn->query($sql) === TRUE) {
+            $successMessage = "Registration successful!";
+        } else {
+            $errorMessage = "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $conn->close();
+    }
+}
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

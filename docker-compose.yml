@@ -10,6 +10,13 @@ services:
       - ./projeto-ToDo:/var/www/html/
     networks:
       - webnet
+    depends_on:
+      - db
+    command: >
+      bash -c "
+        docker-php-ext-install pdo pdo_mysql &&
+        apache2-foreground
+      "
 
   mysql:
     image: mysql:8.0
