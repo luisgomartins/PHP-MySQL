@@ -1,6 +1,7 @@
 <?php
 $username = $password = $email = "";
 $errorUsername = $errorPassword = $errorEmail = "";
+$sucess = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["inputusername"])) {
         $errorUsername = "Campo obrigatório";
@@ -19,16 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($errorUsername) && empty($errorPassword) && empty($errorEmail)) {
         require 'includes/db.php';
+
         $hash_da_senha = md5($password);
         $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$password', '$email')";
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
-            exit();
+            echo "Foi cadastrado";
+            $sucess = " show";
         } else {
-            echo "<script>alert('Erro ao cadastrar usuário: " . $conn->error . "');</script>";
+            echo "Error:  $sql <br>" . $conn->error;
         }
+        $conn->close();
     }
-    $conn->close();
 }
 
 
@@ -96,13 +98,16 @@ function test_input($data)
                 </div>
                 <div class="form-floating m-auto p-1 position-relative">
                     <input type="password" class="form-control pe-5" id="inputpassword" name="inputpassword" placeholder="Password" required>
-                    <button type="button" id="botaoVerSenha" class="btn position-absolute top-50 end-0 translate-middle-y me-2" onclick="verSenha()" style="border: none; background: none;">
-                        <i class="bi bi-eye"></i>
-                    </button>
                     <label for="inputpassword">Password</label>
+                    
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
+            <div class="alert alert-success alert-dismissible fade <?php echo $sucess; ?>" role="alert">
+                    <i class="bi bi-check-circle"></i>
+                    <strong>OK!</strong> Cadastro realizado com sucesso.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
 
 
         </div>
