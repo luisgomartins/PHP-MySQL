@@ -1,3 +1,46 @@
+<?php
+$username = $password = $email = "";
+$errorUsername = $errorPassword = $errorEmail = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["inputusername"])) {
+        $errorUsername = "Campo obrigatório";
+    } else {
+        $username = test_input($_POST["inputusername"]);
+    }
+    if (empty($_POST["inputpassword"])) {
+        $errorPassword = "Campo obrigatório";
+    } else {
+        $password = test_input($_POST["inputpassword"]);
+    }
+    if (empty($_POST["inputemail"])) {
+        $errorEmail = "Campo obrigatório";
+    } else {
+        $email = test_input($_POST["inputemail"]);
+    }
+    if (empty($errorUsername) && empty($errorPassword) && empty($errorEmail)) {
+        require 'includes/db.php';
+        $hash_da_senha = md5($password);
+        $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$password', '$email')";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
+            exit();
+        } else {
+            echo "<script>alert('Erro ao cadastrar usuário: " . $conn->error . "');</script>";
+        }
+    }
+    $conn->close();
+}
+
+
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
