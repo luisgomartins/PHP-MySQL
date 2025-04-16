@@ -1,3 +1,49 @@
+<?php
+session_start();
+
+$username = $pw = $email = "";
+$errorUsername = $errorPassword = $errorEmail = "";
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["inputpassword"])) {
+        $errorPassword = "Campo obrigatório";
+    } else {
+        $pw = test_input($_POST["inputpassword"]);
+    }
+    if (empty($_POST["inputemail"])) {
+        $errorEmail = "Campo obrigatório";
+    } else {
+        $email = test_input($_POST["inputemail"]);
+    }
+    if (empty($errorPassword) && empty($errorEmail)) {
+        require 'includes/db.php';
+        $hash_pw = md5($pw);
+        $sql = "SELECT * FROM users WHERE email = '$email' AND pw = '$hash_pw'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $_SESSION['id_user'] = $row['id'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['pw'] = $row['pw'];
+                header("Location: user/dashboard.php");
+            }
+        } else {
+            $error = " show";
+        }
+        $conn->close();
+    }
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
 
 
 
@@ -7,7 +53,7 @@
 
 
 
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,18 +100,23 @@
         <div class="container w-25 p-2 bg-light rounded-3 text-center">
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="form-floating m-auto p-1">
-                    <input type="email" class="form-control" id="inputemail" name="inputemail" placeholder="email" required>
-                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="inputemail" name="inputemail" placeholder="Email" required>
+                    <label for="inputemail">Email</label>
                 </div>
                 <div class="form-floating m-auto p-1 position-relative">
                     <input type="password" class="form-control pe-5" id="inputpassword" name="inputpassword" placeholder="Password" required>
-                    <button type="button" id="botaoVerSenha" class="btn position-absolute top-50 end-0 translate-middle-y me-2" onclick="verSenha()" style="border: none; background: none;">
-                        <i class="bi bi-eye"></i>
-                    </button>
                     <label for="inputpassword">Password</label>
+                    <i class="bi bi-eye-slash toggle-password position-absolute top-50 end-0 translate-middle-y me-3"
+                        style="cursor: pointer;"
+                        data-target="inputpassword"></i>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
+            </form>
 
+        </div>
+        <div class="alert alert-danger alert-dismissible mx-auto mt-3 fade <?php echo $error; ?>" role="alert" style="height: 70px; width: 350px;">
+            ❌ Email or password is invalid!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
         </div>
 
 
@@ -81,17 +132,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script>
-        function verSenha() {
-            let iconeDoOlho = document.getElementById("botaoVerSenha").querySelector("i");
-            let campoSenha = document.getElementById("inputpassword");
-            if (campoSenha.type === "password") {
-                iconeDoOlho.className = "bi bi-eye-slash";
-                campoSenha.type = "text";
-            } else {
-                iconeDoOlho.className = "bi bi-eye";
-                campoSenha.type = "password";
-            }
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.toggle-password').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    const targetInput = document.getElementById(this.getAttribute('data-target'));
+                    const isPassword = targetInput.type === 'password';
+                    targetInput.type = isPassword ? 'text' : 'password';
+                    this.classList.toggle('bi-eye');
+                    this.classList.toggle('bi-eye-slash');
+                });
+            });
+        });
     </script>
 </body>
 

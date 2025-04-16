@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hash_pw = md5($pw);
         $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$hash_pw', '$email')";
         if ($conn->query($sql) === TRUE) {
-            $sucess = "✅ Cadastro realizado com sucesso!";
+            $sucess = " show";
+            header("Location: user/dashboard.php");
         } else {
             echo "Erro: " . $sql . "<br>" . $conn->error;
         }
@@ -103,7 +104,7 @@ function test_input($data)
             </form>
 
         </div>
-        <div class="alert alert-success alert-dismissible mx-auto mt-3" role="alert" style="height: 70px; width: 350px;">
+        <div class="alert alert-success alert-dismissible mx-auto mt-3 fade <?php echo $sucess; ?>" role="alert" style="height: 70px; width: 350px;">
             ✅ Cadastro realizado com sucesso!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
         </div>
