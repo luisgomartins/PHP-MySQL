@@ -1,5 +1,5 @@
 <?php
-$username = $password = $email = "";
+$username = $pw = $email = "";
 $errorUsername = $errorPassword = $errorEmail = "";
 $sucess = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["inputpassword"])) {
         $errorPassword = "Campo obrigatório";
     } else {
-        $password = test_input($_POST["inputpassword"]);
+        $pw = test_input($_POST["inputpassword"]);
     }
     if (empty($_POST["inputemail"])) {
         $errorEmail = "Campo obrigatório";
@@ -20,20 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($errorUsername) && empty($errorPassword) && empty($errorEmail)) {
         require 'includes/db.php';
-
-        $hash_da_senha = md5($password);
-        $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$password', '$email')";
+        $hash_pw = md5($pw);
+        $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$hash_pw', '$email')";
         if ($conn->query($sql) === TRUE) {
-            echo "Foi cadastrado";
-            $sucess = " show";
+            $sucess = "✅ Cadastro realizado com sucesso!";
         } else {
-            echo "Error:  $sql <br>" . $conn->error;
+            echo "Erro: " . $sql . "<br>" . $conn->error;
         }
         $conn->close();
     }
 }
-
-
 
 function test_input($data)
 {
@@ -99,17 +95,17 @@ function test_input($data)
                 <div class="form-floating m-auto p-1 position-relative">
                     <input type="password" class="form-control pe-5" id="inputpassword" name="inputpassword" placeholder="Password" required>
                     <label for="inputpassword">Password</label>
-                    
+                    <i class="bi bi-eye-slash toggle-password position-absolute top-50 end-0 translate-middle-y me-3"
+                        style="cursor: pointer;"
+                        data-target="inputpassword"></i>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
-            <div class="alert alert-success alert-dismissible fade <?php echo $sucess; ?>" role="alert">
-                    <i class="bi bi-check-circle"></i>
-                    <strong>OK!</strong> Cadastro realizado com sucesso.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
 
-
+        </div>
+        <div class="alert alert-success alert-dismissible mx-auto mt-3" role="alert" style="height: 70px; width: 350px;">
+            ✅ Cadastro realizado com sucesso!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
         </div>
 
 
@@ -125,17 +121,17 @@ function test_input($data)
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script>
-        function verSenha() {
-            let iconeDoOlho = document.getElementById("botaoVerSenha").querySelector("i");
-            let campoSenha = document.getElementById("inputpassword");
-            if (campoSenha.type === "password") {
-                iconeDoOlho.className = "bi bi-eye-slash";
-                campoSenha.type = "text";
-            } else {
-                iconeDoOlho.className = "bi bi-eye";
-                campoSenha.type = "password";
-            }
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.toggle-password').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    const targetInput = document.getElementById(this.getAttribute('data-target'));
+                    const isPassword = targetInput.type === 'password';
+                    targetInput.type = isPassword ? 'text' : 'password';
+                    this.classList.toggle('bi-eye');
+                    this.classList.toggle('bi-eye-slash');
+                });
+            });
+        });
     </script>
 </body>
 
