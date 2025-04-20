@@ -17,11 +17,11 @@ cd PHP-MySQL
 ## 2️⃣ Acessar sua branch pessoal
 
 # Filipe
-git checkout filipe-task
+git checkout filipe
 # Hullian
-git checkout hullian-task
+git checkout hullian
 # Thiago
-git checkout thiago-task
+git checkout thiago
 
 ## 3️⃣ Rodar com Docker 
 docker-compose up --build
