@@ -1,9 +1,53 @@
-# Minhas anotações
+# Filipe-Task
+## 🧑‍💻 Guia para Rodar Localmente
+
+Este projeto está configurado com Docker. Cada integrante possui uma branch separada para desenvolver suas tarefas.
+
+---
+
+## ✅ Pré-requisitos
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado
+- [Git](https://git-scm.com) instalado
+
+## 1️⃣ Clonar o repositório
+Abra o terminal bash e execute:
+
+git  clone https://github.com/luisgomartins/PHP-MySQL
+cd PHP-MySQL
+
+## 2️⃣ Acessar sua branch pessoal
+
+# Filipe
+git checkout filipe-task
+# Hullian
+git checkout hullian-task
+# Thiago
+git checkout thiago-task
+
+## 3️⃣ Rodar com Docker 
+docker-compose up --build
+
+## 4️⃣ Acessar no navegador
+🕸️ Sistema PHP (site):
+http://localhost:8080
+
+🛠️ phpMyAdmin (banco):
+http://localhost:8081
+
+Login phpMyAdmin:
+Usuário: root
+Senha: rootpassword
+
+## 5️⃣ Parar os containers
+Quando terminar:
+docker-compose down
 
 # PHP-MySQL
 Repositório compartilhado para projeto de PHP-MySQL - Programação de Computadores II
 # Bash para rodar a docker
 docker-compose up -d
+
+
 
 # Estrutura do Sistema
 /projeto-ToDo
