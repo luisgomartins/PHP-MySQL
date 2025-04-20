@@ -1,4 +1,3 @@
-# Filipe-Task
 ## 🧑‍💻 Guia para Rodar Localmente
 
 Este projeto está configurado com Docker. Cada integrante possui uma branch separada para desenvolver suas tarefas.
