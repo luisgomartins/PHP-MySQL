@@ -22,7 +22,7 @@ html {
 }
 
 .background {
-    background-image: url('uploads/5471985.jpg');
+    background-image: url('5471985.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -31,30 +31,6 @@ html {
     z-index: 1;
 
 }
-
-.rocket {
-    background-image: url('uploads/lancador-de-foguete.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    animation: fly 5s linear infinite;
-    z-index: 2;
-}
-
-@keyframes fly {
-    0% {
-        transform: translateX(-50%) translateY(100vh);
-    }
-
-    100% {
-        transform: translateX(-50%) translateY(-120vh);
-    }
-}
-
 .titulo2 {
     color: #ff5858;
     font-family: "Audiowide", sans-serif;
