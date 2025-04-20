@@ -1,12 +1,12 @@
 <?php
-$username = $pw = $email = "";
+session_start();
+$uname = $pw = $email = "";
 $errorUsername = $errorPassword = $errorEmail = "";
-$sucess = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["inputusername"])) {
         $errorUsername = "Campo obrigatório";
     } else {
-        $username = test_input($_POST["inputusername"]);
+        $uname = test_input($_POST["inputusername"]);
     }
     if (empty($_POST["inputpassword"])) {
         $errorPassword = "Campo obrigatório";
@@ -21,10 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errorUsername) && empty($errorPassword) && empty($errorEmail)) {
         require 'includes/db.php';
         $hash_pw = md5($pw);
-        $sql = "INSERT INTO users (username, pw, email) VALUES ('$username', '$hash_pw', '$email')";
+        $sql = "INSERT INTO users (username, pw, email) VALUES ('$uname', '$hash_pw', '$email')";
         if ($conn->query($sql) === TRUE) {
-            $sucess = " show";
-            header("Location: user/dashboard.php");
+            $_SESSION['register'] = true;
+            sleep(1); // espera 1 segundo
+            header("Location: user/profile.php");
+
         } else {
             echo "Erro: " . $sql . "<br>" . $conn->error;
         }

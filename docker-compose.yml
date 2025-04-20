@@ -11,7 +11,7 @@ services:
     networks:
       - xampp-network
 
-  # Serviço para o MySQL
+  #MySQL
   db:
     image: mysql:5.7
     container_name: mysql-db
@@ -24,7 +24,7 @@ services:
     networks:
       - xampp-network
 
-  # Serviço para o phpMyAdmin
+  #phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -33,7 +33,7 @@ services:
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "8081:80" # Acessar phpMyAdmin via localhost:8081
+      - "8081:80"
     networks:
       - xampp-network
 

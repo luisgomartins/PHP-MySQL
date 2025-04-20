@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$username = $pw = $email = "";
+$uname = $pw = $email = "";
 $errorUsername = $errorPassword = $errorEmail = "";
 $error = "";
 
@@ -27,7 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pw'] = $row['pw'];
+                $_SESSION['success'] = true;
                 header("Location: user/dashboard.php");
+                
             }
         } else {
             $error = " show";
