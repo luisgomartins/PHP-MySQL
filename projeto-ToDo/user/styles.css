@@ -1,0 +1,89 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('5471985.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+.navbar {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    font-weight: bold;
+    color: #fff;
+}
+
+#add-task-btn {
+    transition: all 0.3s ease;
+}
+
+#add-task-btn:hover {
+    background-color: #ff5722;
+    /* Cor de destaque */
+    transform: scale(1.1);
+}
+
+#add-task-btn {
+    position: fixed;
+    /* Fixa o botão na tela */
+    left: 50px;
+    /* Alinha o botão à esquerda */
+    top: 50%;
+    /* Coloca o botão no meio da tela (verticalmente) */
+    transform: translateY(-50%);
+    /* Ajusta o botão para estar realmente centralizado */
+    z-index: 1050;
+    /* Garante que o botão ficará acima de outros elementos */
+    border-radius: 50%;
+    /* Deixa o botão redondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Adiciona sombra ao botão para destaque */
+}
+
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 0px 20px rgb(255, 0, 0);
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* Adicionando padding inferior para garantir que o conteúdo não fique colado à borda */
+    box-sizing: border-box;
+    /* Garante que o padding não afete a largura total */
+    background-color: #f1f1f1;
+    /* Adicionando uma cor de fundo para o rodapé, se necessário */
+    text-align: center;
+    /* Alinha o texto ao centro, você pode ajustar conforme necessário */
+}
