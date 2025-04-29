@@ -64,19 +64,33 @@ $tasks = $stmt->get_result();
 
 
 
-    <button id="add-task-btn"class="btn p-3 text-bg-dark mx-auto btn-lg">
+    <button id="add-task-btn" class="btn p-3 text-bg-dark mx-auto btn-lg">
         <i class="bi bi-file-plus-fill"></i>
     </button>
     <div class="container">
         <div class="row g-1 mt-3">
             <?php while ($task = $tasks->fetch_assoc()): ?>
-                <div class="card mt-4 mx-auto text-bg-light" style="max-width: 18rem;">
-                    <div class="card-header">Data</div>
+                <?php if ($task['status'] == 'open') {
+                    $color = " bg-dark";
+                    $text_color = " color: white";
+                    $button_color = " bi-bookmark-check-fill";
+                    $button_color2 = " btn-success";
+                } elseif ($task['status'] == 'done') {
+                    $color = " bg-success";
+                    $text_color = " color: white";
+                    $button_color = " bi bi-bookmark-x-fill";
+                    $button_color2 = " btn-danger";
+                } ?>
+                <div class="card mt-4 mx-auto <?php echo $color ?>" style="max-width: 18rem; <?php echo $text_color ?>">
+                    <div class="card-header">Data
+                    </div>
+
                     <div class="card-body">
                         <h5 class="card-title"><?= $task['title'] ?></h5>
                         <p class="card-text"><?= $task['description'] ?></p>
                     </div>
                     <div class="mx-auto mb-2">
+
                         <a href="edit_task.php?id=<?= $task['id'] ?>" style="display: inline-block;">
                             <button class="btn btn-primary btn-sm me-1">
                                 <i class="bi bi-pencil-fill"></i>
@@ -85,6 +99,10 @@ $tasks = $stmt->get_result();
                         <button class="btn btn-danger btn-sm">
                             <i class="bi bi-trash-fill"></i>
                         </button>
+                            <button class="btn btn-primary btn-sm m-1 <?php echo $button_color2 ?>">
+                                <i class="<?php echo $button_color ?>"></i>
+                            </button>
+
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -100,7 +118,10 @@ $tasks = $stmt->get_result();
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
+        
+    </script>
+
 </body>
 
 </html>
