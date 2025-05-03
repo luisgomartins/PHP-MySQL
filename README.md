@@ -32,22 +32,9 @@ Repositório compartilhado para projeto de PHP-MySQL - Programação de Computad
 
 
 
-# Estrutura do Sistema
-/projeto-ToDo
-|-index.php (Tela Inicial)
-|-register.php (cadastro)
-|-login.php (login)
-|-styles.css
+# Filipe Tasks
+Desenvolver a página de adicionar tarefas com PHP e SQL
 
-/projeto-ToDo/user/
-|- dashboard.php (painel de tarefas)
-|- add_task.php (adicionar tarefa)
-|- edit_task.php (editar tarefa)
-|- profile.php (editar perfil)
-|- report.php (relatório/gráfico)
-|- logout.php
-
-/projeto-ToDo/includes/
 |- db.php (conexão com MySQL)
 |- auth.php (verificação de login)
 
