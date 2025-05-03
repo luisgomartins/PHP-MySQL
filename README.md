@@ -1,9 +1,12 @@
-## Guia
+## Guia para Rodar Localmente
 
-Este projeto está configurado com Docker e está sendo desenvolvido com o CodeSpace do GitHub.
-Cada integrante possui uma branch separada para desenvolver suas tarefas.
+Este projeto está configurado com Docker. Cada integrante possui uma branch separada para desenvolver suas tarefas.
 
 ---
+
+## ✅ Pré-requisitos
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado
+- [Git](https://git-scm.com) instalado
 
 # Bash para rodar a docker
 docker-compose up -d
@@ -29,5 +32,24 @@ Repositório compartilhado para projeto de PHP-MySQL - Programação de Computad
 
 
 
-# Filipe Task
-Desenvolver página de adicionar tarefas com PHP e SQL
+# Estrutura do Sistema
+/projeto-ToDo
+|-index.php (Tela Inicial)
+|-register.php (cadastro)
+|-login.php (login)
+|-styles.css
+
+/projeto-ToDo/user/
+|- dashboard.php (painel de tarefas)
+|- add_task.php (adicionar tarefa)
+|- edit_task.php (editar tarefa)
+|- profile.php (editar perfil)
+|- report.php (relatório/gráfico)
+|- logout.php
+
+/projeto-ToDo/includes/
+|- db.php (conexão com MySQL)
+|- auth.php (verificação de login)
+
+/projeto-ToDo/uploads/
+|- (imagens anexadas)
