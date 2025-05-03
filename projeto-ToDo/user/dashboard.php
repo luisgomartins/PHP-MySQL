@@ -42,18 +42,14 @@ $tasks = $stmt->get_result();
             <a class="navbar-brand" href="report.php">Graphics</a>
 
             <div class="d-flex align-items-center ms-auto">
-                <!-- Foto do perfil -->
                 <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle me-2 bg-white" width="40" height="40">
 
-                <!-- Nome do usuário -->
                 <span class="me-3 fw-bold text-white"><?php echo $_SESSION['username'] ?></span>
 
-                <!-- Botão de configurações -->
                 <a href="perfil.php" class="btn btn-primary btn-sm me-2">
                     <i class="bi bi-gear"></i> Configurações
                 </a>
 
-                <!-- Botão de logout -->
                 <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
             </div>
         </div>

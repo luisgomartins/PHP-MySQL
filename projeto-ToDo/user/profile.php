@@ -14,45 +14,83 @@ if (isset($_SESSION['register'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link rel="stylesheet" href="styless.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 
-<body class="bg-light">
-    <div class="background">
-        <nav class=" bg-dark navbar-dark position-fixed top-0 start-0 w-100">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">ToDo</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="register.php">Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                    </ul>
+<body class="bg-dark">
+    <?php if (!empty($register)) : ?>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+            <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <?php echo "Welcome " . $_SESSION['username'] . " 🚀"; ?>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
-        </nav>
-        <div class="alert alert-success alert-dismissible mx-auto mt-3 fade <?php echo $register; ?>" role="alert" style="height: 70px; width: 350px;">
-            <?php
-            echo "Cadastro realizado com sucesso 🚀";
-            ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
         </div>
+    <?php endif; ?>
+    <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
+            <a class="navbar-brand" href="report.php">Graphics</a>
+
+            <div class="d-flex align-items-center ms-auto">
+                <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle me-2 bg-white" width="40" height="40">
+
+                <span class="me-3 fw-bold text-white"><?php echo $_SESSION['username'] ?></span>
+
+                <a href="perfil.php" class="btn btn-primary btn-sm me-2">
+                    <i class="bi bi-gear"></i> Configurações
+                </a>
+
+                <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
 
 
+    <div class="container mt-5 mx-auto">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <h1 class="text-center text-white">Perfil</h1>
+            <div class="text-center mt-4">
+                <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle bg-white" width="250" height="250">
+                <div class="container mx-auto mt-2">
+                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Update Profile Photo
+                    </button>
+                </div>
+
+            </div>
+            <div class="container mt-5 mx-auto" style="width: 400px;">
+                <div class="form-floating m-auto">
+                    <input type="text" class="form-control" id="inputusername" name="inputusername" placeholder="Username" required>
+                    <label for="inputusername">Name</label>
+                </div>
+            </div>
+        </form>
     </div>
 
 
-    <div class="rocket">
 
 
 
 
+
+
+
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 To Do. Todos os direitos reservados.</p>
+        <p><a href="" class="text-white" style="text-decoration: none;">Contato </a><a href="" class="text-white" style="text-decoration: none;">| Sobre o projeto</a></p>
+
+    </footer>
+
+
+
+</body>
+
+</html>
 
 
 
