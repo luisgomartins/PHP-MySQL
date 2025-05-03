@@ -17,6 +17,7 @@ services:
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ToDo
       MYSQL_USER: user
       MYSQL_PASSWORD: userpassword
     volumes:
