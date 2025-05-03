@@ -32,3 +32,4 @@ Repositório compartilhado para projeto de PHP-MySQL - Programação de Computad
 # Thiago Task
 Desenvolver o Autenticador de login em php em conjunto com o banco de dados
 Desenvolver a lógica de logout de login
+a
