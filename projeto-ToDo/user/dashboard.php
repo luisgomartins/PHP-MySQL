@@ -54,7 +54,9 @@ $tasks = $stmt->get_result();
                 </a>
 
                 <!-- Botão de logout -->
-                <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                <a href="logout.php?logout=1" class="btn btn-danger btn-sm">Logout</a>
+
+                
             </div>
         </div>
     </nav>
