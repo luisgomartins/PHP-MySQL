@@ -49,7 +49,7 @@ if (isset($_SESSION['register'])) {
         </div>
     </nav>
 
-
+<!-- Testando branch -->
     <div class="container mt-5 mx-auto">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <h1 class="text-center text-white">Perfil</h1>
