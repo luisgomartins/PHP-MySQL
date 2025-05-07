@@ -1,6 +1,9 @@
 <?php
 require '../includes/db.php';
 session_start();
+$titulo = $descricao = "";
+$erroTitulo = $erroDescricao = "";
+
 ?>
 
 
@@ -17,17 +20,24 @@ session_start();
 
 <body>
 
-    <div class="container mt-5 mb-5 text-center bg-light rounded-3 shadow p-3 mx-auto" style="max-width: 500px;">
-        <h1 class="titulo2 text-center">Adicionar Tarefa</h1>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="title" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">Title</label>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
+        <div class="container mt-5 mb-5 text-center bg-light rounded-3 shadow p-3 mx-auto" style="max-width: 500px;">
+            <h1 class="titulo2 text-center">Adicionar Tarefa</h1>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="title" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Title</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="description" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Description</label>
+            </div>
         </div>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="description" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Description</label>
-        </div>
-    </div>
+        <button>
+            <a href="dashboard.php" class="btn btn-primary btn-lg" type="submit">Adicionar</a>
+        </button>
+
+    </form>
 
 
 
