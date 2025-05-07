@@ -104,7 +104,8 @@ $tasks = $stmt->get_result();
                     <i class="bi bi-gear"></i> Configurações
                 </a>
 
-                <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+
+                <a href="logout.php?logout=1" class="btn btn-danger btn-sm">Logout</a>
             </div>
         </div>
     </nav>
