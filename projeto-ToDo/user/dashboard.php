@@ -100,11 +100,13 @@ $tasks = $stmt->get_result();
 
                 <span class="me-3 fw-bold text-white"><?php echo $_SESSION['username'] ?></span>
 
-                <a href="perfil.php" class="btn btn-primary btn-sm me-2">
-                    <i class="bi bi-gear"></i> Configurações
+                <a href="profile.php" class="btn btn-primary btn-sm me-2">
+                    <i class="bi bi-gear"></i> Profile
                 </a>
 
-                <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                <a href="logout.php" class="btn btn-danger btn-sm">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                </a>
             </div>
         </div>
     </nav>
@@ -161,7 +163,7 @@ $tasks = $stmt->get_result();
                     $button_color = " bi bi-bookmark-x-fill";
                     $button_color2 = " btn-danger";
                 } ?>
-                <div class="card mx-2 <?php echo $color ?>" style="max-width: 15rem; top: 20px; height: 350px;  <?php echo $text_color ?>">
+                <div class="card mx-2 <?php echo $color ?>" style="max-width: 15.2rem; top: 20px; height: 350px;  <?php echo $text_color ?>">
                     <div class="card-header"> <?= $task['data_criacao'] ?>
                         <form action="update_status.php" method="post" class="d-inline">
                             <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
@@ -206,7 +208,9 @@ $tasks = $stmt->get_result();
             <ul class="pagination justify-content-center" style="margin-top: 40px;">
                 <?php if ($page > 1): ?>
                     <li class="page-item">
-                        <a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a>
+                        <a class="page-link" href="?page=<?= $page - 1 ?>">
+                            <i class="bi bi-caret-left-fill"></i>
+                        </a>
                     </li>
                 <?php endif; ?>
 
@@ -218,7 +222,9 @@ $tasks = $stmt->get_result();
 
                 <?php if ($page < $total_pages): ?>
                     <li class="page-item">
-                        <a class="page-link" href="?page=<?= $page + 1 ?>">Próxima</a>
+                        <a class="page-link" href="?page=<?= $page + 1 ?>">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </a>
                     </li>
                 <?php endif; ?>
             </ul>
