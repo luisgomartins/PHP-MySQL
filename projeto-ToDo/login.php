@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pw'] = $row['pw'];
                 $_SESSION['success'] = true;
+                $_SESSION['foto'] = $row['foto'];
                 header("Location: user/dashboard.php");
-                
             }
         } else {
             $error = " show";

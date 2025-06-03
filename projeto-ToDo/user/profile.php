@@ -33,18 +33,17 @@ if (isset($_SESSION['register'])) {
     <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="dashboard.php">Dashboard</a>
-            <a class="navbar-brand" href="report.php">Graphics</a>
 
             <div class="d-flex align-items-center ms-auto">
                 <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle me-2 bg-white" width="40" height="40">
 
                 <span class="me-3 fw-bold text-white"><?php echo $_SESSION['username'] ?></span>
 
-                <a href="perfil.php" class="btn btn-primary btn-sm me-2">
-                    <i class="bi bi-gear"></i> Configurações
+                <a href="profile.php" class="btn btn-primary btn-sm me-2">
+                    <i class="bi bi-gear"></i> Profile
                 </a>
 
-                <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                <a href="logout.php?logout=1" class="btn btn-danger btn-sm">Logout</a>
             </div>
         </div>
     </nav>
@@ -54,7 +53,7 @@ if (isset($_SESSION['register'])) {
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <h1 class="text-center text-white">Perfil</h1>
             <div class="text-center mt-4">
-                <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle bg-white" width="250" height="250">
+                <img src="fotos/<?php echo $_SESSION['foto'] ?>" alt="Foto de Perfil" class="rounded-circle bg-white" width="250" height="250">
                 <div class="container mx-auto mt-2">
                     <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Update Profile Photo

@@ -11,11 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descricao = trim(string: $_POST['descricao']);
 
     // Verifica se o título está vazios
-    if (empty($titulo)){
+    if (empty($titulo)) {
         $erroTitulo = "O título é obrigatório.";
     }
     // Verifica se a descrição está vazia
-    if (empty($descricao)){
+    if (empty($descricao)) {
         $erroDescricao = "A descrição é obrigatória.";
     }
     // Verifica se as variaveis de erro estão vazias, se sim então ele para inserir pro banco de dados
@@ -48,23 +48,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.php">Dashboard</a>
+
+            <div class="d-flex align-items-center ms-auto">
+                <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur.png" alt="Foto de Perfil" class="rounded-circle me-2 bg-white" width="40" height="40">
+
+                <span class="me-3 fw-bold text-white"><?php echo $_SESSION['username'] ?></span>
+
+                <a href="profile.php" class="btn btn-primary btn-sm me-2">
+                    <i class="bi bi-gear"></i> Profile
+                </a>
+
+                <a href="logout.php?logout=1" class="btn btn-danger btn-sm">Logout</a>
+            </div>
+        </div>
+    </nav>
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-        
-        <div class="container mt-5 mb-5 text-center bg-light rounded-3 shadow p-3 mx-auto" style="max-width: 500px;">
-            <h1 class="titulo2 text-center">Adicionar Tarefa</h1>
+
+        <div class="card container mt-5 mb-5 text-center bg-dark rounded-3 shadow p-3 mx-auto" style="max-width: 500px;">
+            <h1 class="titulo2 text-center" style="color: white;">Adicionar Tarefa</h1>
             <div class="form-floating">
                 <textarea class="form-control" name="titulo" placeholder="title" id="floatingTextarea"></textarea>
                 <label for="floatingTextarea">Título da tarefa</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mt-3">
                 <textarea class="form-control" name="descricao" placeholder="description" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
+                    style="height: 250px"></textarea>
                 <label for="floatingTextarea2">Descrição</label>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto mt-3">
@@ -72,6 +89,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </form>
+
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 To Do. Todos os direitos reservados.</p>
+        <p><a href="" class="text-white" style="text-decoration: none;">Contato </a><a href="" class="text-white" style="text-decoration: none;">| Sobre o projeto</a></p>
+
+    </footer>
 
 
 
