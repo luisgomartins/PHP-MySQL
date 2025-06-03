@@ -16,6 +16,7 @@ services:
     image: mysql:5.7
     container_name: mysql-db
     environment:
+      MYSQL_DATABASE: ToDo
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: ToDo
       MYSQL_USER: user
