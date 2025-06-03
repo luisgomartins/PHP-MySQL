@@ -24,9 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (username, pw, email) VALUES ('$uname', '$hash_pw', '$email')";
         if ($conn->query($sql) === TRUE) {
             $_SESSION['register'] = true;
-            sleep(1); // espera 1 segundo
+            // Pega o ID do usuário recém-criado
+            $user_id = $conn->insert_id;
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['username'] = $uname;
+            $_SESSION['email'] = $email;
+            sleep(1);
             header("Location: user/profile.php");
-
+            exit();
         } else {
             echo "Erro: " . $sql . "<br>" . $conn->error;
         }

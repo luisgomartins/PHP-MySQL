@@ -115,7 +115,7 @@ $tasks = $stmt->get_result();
 
 
 
-    <button id="add-task-btn" class="btn p-3 text-bg-dark mx-auto btn-lg">
+    <button id="add-task-btn" class="btn p-3 text-bg-dark mx-auto btn-lg" onclick="window.location.href='add_task.php'">
         <i class="bi bi-file-plus-fill"></i>
     </button>
     <div class="container mt-4">
